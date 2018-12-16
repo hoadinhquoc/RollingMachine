@@ -16,6 +16,7 @@ public class RollingNumber : MonoBehaviour {
 
 	[SerializeField]List<Sprite> numberSprites;
 	[SerializeField]Image numberImage;
+	[SerializeField]UnityEvent ChangeNumberEvent;
 	[SerializeField]UnityEvent EndEvent;
 	
 	float _timer = 0f;
@@ -40,7 +41,7 @@ public class RollingNumber : MonoBehaviour {
 			_timer = 0f;
 
 			numberImage.sprite = numberSprites[_number];
-
+			ChangeNumberEvent.Invoke();
 			if(_targetNumber != -1)
 			{
 				if(_number == _targetNumber)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class RollingNumber : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class RollingNumber : MonoBehaviour {
 
 	[SerializeField]List<Sprite> numberSprites;
 	[SerializeField]Image numberImage;
+	[SerializeField]UnityEvent EndEvent;
 	
 	float _timer = 0f;
 	int _number = 0;
@@ -45,6 +47,7 @@ public class RollingNumber : MonoBehaviour {
 				{
 					_isRolling = false;
 					_targetNumber = -1;
+					EndEvent.Invoke();
 				}
 			}
 		}

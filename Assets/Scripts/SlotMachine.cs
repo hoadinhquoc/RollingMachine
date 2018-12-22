@@ -6,6 +6,7 @@ public class SlotMachine : MonoBehaviour {
 	[SerializeField] int minNumber = 200;
 	[SerializeField] int maxNumber = 360;
 	[SerializeField] float stopTime = 4f;
+	[SerializeField] float stopTimeLastItem = 7f;
 	[SerializeField] List<RollingNumber> rollingSlots;
 	// Use this for initialization
 	
@@ -25,8 +26,8 @@ public class SlotMachine : MonoBehaviour {
 
 		float dt = Time.deltaTime;
 		_timer += dt;
-
-		if(_timer > stopTime)
+		float realStopTime = _currentSlotIndex == rollingSlots.Count - 1 ? stopTimeLastItem : stopTime;
+		if(_timer > realStopTime)
 		{
 			_timer = 0f;
 

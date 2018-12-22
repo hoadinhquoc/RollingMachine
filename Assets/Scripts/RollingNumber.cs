@@ -20,6 +20,7 @@ public class RollingNumber : MonoBehaviour {
 	[SerializeField]UnityEvent EndEvent;
 	
 	float _timer = 0f;
+	float _timeToStop = 0f;
 	int _number = 0;
 	bool _isRolling = false;
 	int _targetNumber = -1;
@@ -33,6 +34,7 @@ public class RollingNumber : MonoBehaviour {
 		if(!_isRolling) return;
 
 		_timer += Time.deltaTime;
+		_timeToStop -= Time.deltaTime;
 
 		if(_timer >= CHANGING_TIME)
 		{
@@ -42,7 +44,7 @@ public class RollingNumber : MonoBehaviour {
 
 			numberImage.sprite = numberSprites[_number];
 			ChangeNumberEvent.Invoke();
-			if(_targetNumber != -1)
+			if(_targetNumber != -1 && _timeToStop <= 0f)
 			{
 				if(_number == _targetNumber)
 				{
@@ -62,8 +64,9 @@ public class RollingNumber : MonoBehaviour {
 		_isRolling = true;
 	}
 
-	public void StopRollingAt(int targetNumber)
+	public void StopRollingAt(int targetNumber, float timeToStop)
 	{
 		_targetNumber = targetNumber;
+		_timeToStop = timeToStop;
 	}
 }

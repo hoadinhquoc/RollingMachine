@@ -5,8 +5,14 @@ using UnityEngine.UI;
 
 public class RewardsManager : MonoBehaviour
 {
+    [System.Serializable]
+    class RewardInfo
+    {
+        public Sprite rewardSprite;
+        public Vector3 stopTime;
+    }
     [SerializeField] Image RewardImage;
-    [SerializeField] List<Sprite> RewardsSpriteList;
+    [SerializeField] List<RewardInfo> RewardsInfoList;
     [SerializeField] Animator RewardAnimator;
     [SerializeField] SlotMachine slotMachine;
     //Private field
@@ -18,11 +24,11 @@ public class RewardsManager : MonoBehaviour
     public void SetReward(int index)
     {
         if(index < 0) index = 0;
-        if(index >= RewardsSpriteList.Count) index = RewardsSpriteList.Count -1;
+        if(index >= RewardsInfoList.Count) index = RewardsInfoList.Count -1;
 
-        RewardImage.sprite = RewardsSpriteList[index];
+        RewardImage.sprite = RewardsInfoList[index].rewardSprite;
         _rewardIndex = index;
-        RewardAnimator.Play(index == (RewardsSpriteList.Count -1) ? "ZoomOutMax" : "ZoomOut");
+        RewardAnimator.Play(index == (RewardsInfoList.Count -1) ? "ZoomOutMax" : "ZoomOut");
     }
 
     public void SetNextReward()
@@ -36,7 +42,7 @@ public class RewardsManager : MonoBehaviour
 
     public void OnRollingPressed()
     {
-        slotMachine.OnRollingPressed(_rewardIndex == 0);
+        slotMachine.OnRollingPressed(_rewardIndex == 0, RewardsInfoList[_rewardIndex].stopTime);
     }
     
 }

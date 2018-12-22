@@ -5,6 +5,9 @@ using UnityEngine;
 public class SlotMachine : MonoBehaviour {
 	[SerializeField] int minNumber = 200;
 	[SerializeField] int maxNumber = 360;
+
+	[SerializeField] int minNumberGuest = 100;
+	[SerializeField] int maxNumberGuest = 150;
 	[SerializeField] float stopTime = 4f;
 	[SerializeField] float stopTimeLastItem = 7f;
 	[SerializeField] List<RollingNumber> rollingSlots;
@@ -43,16 +46,16 @@ public class SlotMachine : MonoBehaviour {
 
 	}
 
-	public void OnRollingPressed()
+	public void OnRollingPressed(bool isGuest, float extraStopTime = 0f)
 	{
 		rollingSlots.ForEach(x=>x.StartRolling());
 
-		int index = Random.Range(0, _numberPool.Count);
+		/*int index = Random.Range(0, _numberPool.Count);
 		_winningNumber =  _numberPool[index];
 		_numberPool.RemoveAt(index);
 		
-		_winningNumbers.Clear();
-		int tempWinningNumber = _winningNumber;
+		_winningNumbers.Clear();*/
+		int tempWinningNumber = GetWinningNumber(isGuest);
 		
 		for(int i = 0 ; i < rollingSlots.Count; i++)
 		{
@@ -78,5 +81,19 @@ public class SlotMachine : MonoBehaviour {
 		_timer = 0f;
 
 		_currentSlotIndex = 0;
+	}
+
+	int GetWinningNumber(bool isGuest)
+	{
+		if(isGuest)
+			return Random.Range(minNumberGuest, maxNumberGuest+1);
+
+		int index = Random.Range(0, _numberPool.Count);
+		_winningNumber =  _numberPool[index];
+		_numberPool.RemoveAt(index);
+		
+		_winningNumbers.Clear();
+
+		return _winningNumber;
 	}
 }

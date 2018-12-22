@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textNumber: {fileID: 393740846}
-  CHANGING_TIME: 0.2
+  CHANGING_TIME: 0.15
   START_NUMBER: 0
   TOTAL_NUMBER: 10
   numberSprites:
@@ -762,7 +762,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minNumber: 200
   maxNumber: 360
+  minNumberGuest: 100
+  maxNumberGuest: 150
   stopTime: 3
+  stopTimeLastItem: 7
   rollingSlots:
   - {fileID: 1066844604}
   - {fileID: 225891351}
@@ -1150,9 +1153,8 @@ GameObject:
   - component: {fileID: 706921046}
   - component: {fileID: 706921048}
   - component: {fileID: 706921049}
-  - component: {fileID: 706921050}
   m_Layer: 5
-  m_Name: Display
+  m_Name: Banner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1245,6 +1247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2a4120c5b7847ffbd1241e4c2b5485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BannerAnimator: {fileID: 706921048}
   EndIntroEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1261,57 +1264,9 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &706921050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706921044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 706921046}
-  m_OnClick:
+  EndGoRightEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706921044}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1932949695}
         m_MethodName: SetActive
         m_Mode: 6
@@ -1323,7 +1278,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      - m_Target: {fileID: 1448225879}
+        m_MethodName: SetReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &729358665
 GameObject:
@@ -1998,9 +1964,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textNumber: {fileID: 861555685}
-  CHANGING_TIME: 0.2
-  START_NUMBER: 2
-  TOTAL_NUMBER: 2
+  CHANGING_TIME: 0.12
+  START_NUMBER: 0
+  TOTAL_NUMBER: 10
   numberSprites:
   - {fileID: 21300018, guid: 617dea2dae7324f2bb63e558db251771, type: 3}
   - {fileID: 21300000, guid: 617dea2dae7324f2bb63e558db251771, type: 3}
@@ -7156,6 +7122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RewardImage: {fileID: 1932949699}
   RewardsSpriteList:
+  - {fileID: 21300000, guid: 243d76b63a5624b83857fb4b2c8402c8, type: 3}
   - {fileID: 21300000, guid: 130165707732b4e1f8901bfda1e0fcb6, type: 3}
   - {fileID: 21300000, guid: 5115cf1f7383a47cea285448b0e4bd92, type: 3}
   - {fileID: 21300000, guid: 13bad8dc69f8f4400ad3fa5e0a569444, type: 3}
@@ -7165,6 +7132,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 33f32273ba37f405a8a22e07ad92bf42, type: 3}
   - {fileID: 21300000, guid: e6547f62e0a074b388a5a93c20acb19c, type: 3}
   RewardAnimator: {fileID: 1932949698}
+  slotMachine: {fileID: 238894004}
 --- !u!1 &1572856058
 GameObject:
   m_ObjectHideFlags: 0
@@ -7194,7 +7162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d13cf3c5c5794c60b112c27d5fb3f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartButton: {fileID: 706921050}
+  BannerController: {fileID: 706921049}
   RollingBtn: {fileID: 1932949697}
   LeftBtn: {fileID: 560096354}
   RightBtn: {fileID: 206420146}
@@ -7680,7 +7648,7 @@ RectTransform:
   m_GameObject: {fileID: 1932949695}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1448225878}
   m_RootOrder: 0
@@ -7730,7 +7698,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 238894004}
+      - m_Target: {fileID: 1448225879}
         m_MethodName: OnRollingPressed
         m_Mode: 1
         m_Arguments:
@@ -7793,7 +7761,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e6547f62e0a074b388a5a93c20acb19c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

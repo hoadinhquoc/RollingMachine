@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] Button StartButton;
+    [SerializeField] Banner BannerController;
     [SerializeField] Button RollingBtn;
     [SerializeField] Button LeftBtn;
     [SerializeField] Button RightBtn;
+    bool _isBannerGoRight = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +19,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(StartButton.gameObject.activeSelf)
+        if(!_isBannerGoRight)
         {
             if(Input.GetKeyUp(KeyCode.Space))
             {
-                StartButton.onClick.Invoke();
+                BannerController.OnSpacePressed();
+                _isBannerGoRight = true;
             }
         }
         else

@@ -8,14 +8,14 @@ public class RewardsManager : MonoBehaviour
     [SerializeField] Image RewardImage;
     [SerializeField] List<Sprite> RewardsSpriteList;
     [SerializeField] Animator RewardAnimator;
-
+    [SerializeField] SlotMachine slotMachine;
     //Private field
     int _rewardIndex = 0;
-    void Awake()
+    void OnEnable()
     {
-        SetReward(0);
+        //SetReward(0);
     }
-    void SetReward(int index)
+    public void SetReward(int index)
     {
         if(index < 0) index = 0;
         if(index >= RewardsSpriteList.Count) index = RewardsSpriteList.Count -1;
@@ -32,6 +32,11 @@ public class RewardsManager : MonoBehaviour
     public void SetPreviousReward()
     {
         SetReward(--_rewardIndex);
+    }
+
+    public void OnRollingPressed()
+    {
+        slotMachine.OnRollingPressed(_rewardIndex == 0);
     }
     
 }

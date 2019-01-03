@@ -799,7 +799,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   minNumber: 200
-  maxNumber: 360
+  maxNumber: 363
   minNumberGuest: 100
   maxNumberGuest: 150
   rollingSlots:

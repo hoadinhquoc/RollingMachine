@@ -15,6 +15,8 @@ public class RewardsManager : MonoBehaviour
     [SerializeField] List<RewardInfo> RewardsInfoList;
     [SerializeField] Animator RewardAnimator;
     [SerializeField] SlotMachine slotMachine;
+    [SerializeField] List<Sprite> RewardNameList;
+    [SerializeField] Image RewardName;
     //Private field
     int _rewardIndex = 0;
     void OnEnable()
@@ -29,6 +31,8 @@ public class RewardsManager : MonoBehaviour
         RewardImage.sprite = RewardsInfoList[index].rewardSprite;
         _rewardIndex = index;
         RewardAnimator.Play(index == (RewardsInfoList.Count -1) ? "ZoomOutMax" : "ZoomOut");
+
+        RewardName.sprite = RewardNameList[index];
     }
 
     public void SetNextReward()

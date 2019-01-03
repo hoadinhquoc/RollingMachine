@@ -33,6 +33,7 @@ public class RewardsManager : MonoBehaviour
         RewardAnimator.Play(index == (RewardsInfoList.Count -1) ? "ZoomOutMax" : "ZoomOut");
 
         RewardName.sprite = RewardNameList[index];
+        RewardName.GetComponent<Animator>().Play("Show");
     }
 
     public void SetNextReward()
